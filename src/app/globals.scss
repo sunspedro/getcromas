@@ -1,0 +1,197 @@
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+}
+
+body,
+p {
+    font-family: var(--font-body);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100dvw;
+    background:
+        radial-gradient(at 20% 20%, rgba(255, 175, 135, 0.35) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, rgba(255, 200, 170, 0.3) 0px, transparent 50%),
+        radial-gradient(at 80% 80%, rgba(255, 145, 120, 0.2) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(255, 220, 190, 0.25) 0px, transparent 50%),
+        #fff8f3;
+    gap: 50px;
+
+    &__logo {
+        position: fixed;
+        top: 0;
+        left: 10px;
+    }
+
+    &__intro {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        &__title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2b1810;
+        }
+
+        &__info {
+            color: rgba(43, 24, 16, 0.65);
+        }
+    }
+
+    &__search {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        &__input-wrapper {
+            position: relative;
+
+            &__input {
+                display: flex;
+                outline: none;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                background: #2b1810;
+                min-width: 30dvw;
+                border: 1px solid transparent;
+                border-radius: 24px;
+                padding: 12px 32px;
+                box-shadow: 0 4px 16px rgba(43, 24, 16, 0.2);
+                color: #fff8f3;
+
+                &::placeholder {
+                    color: rgba(255, 248, 243, 0.5);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            &__search-input {
+                position: absolute;
+                height: 20px;
+                width: 20px;
+                stroke: #fff;
+                stroke-width: 2px;
+                top: 50%;
+                right: 5%;
+                transform: translate(0%, -50%);
+            }
+        }
+
+        &__help {
+            text-align: center;
+            color: rgba(43, 24, 16, 0.65);
+            font-size: 12px;
+        }
+    }
+
+    &__modal--overlay {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        width: fit-content;
+    }
+
+    &__modal {
+        padding: 30px;
+        background-color: #2b1810;
+        transform: translate(50%, -50%);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5%;
+        border-radius: 16px;
+        color: white;
+        max-width: 90%;
+        position: relative;
+
+        &__text {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+
+            &__badge {
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            &__title {
+                font-size: 20px;
+            }
+
+            &__list {
+                list-style-type: none;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                .item {
+                    background-color: rgba(255, 175, 135);
+                    border-radius: 22px 0px 22px 0px;
+                    padding: 20px 25px;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    gap: 10px;
+
+                    &--badge {
+                        position: absolute;
+                        right: 5px;
+                        top: 5px;
+                        color: #fff8f3;
+                        background-color: #2b1810;
+                        font-size: 12px;
+                        width: 26px;
+                        height: 26px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                    }
+
+                    &--title {
+                        color: #2b1810;
+                        font-weight: 700;
+                    }
+
+                    &--description {
+                        font-size: 14px;
+                        color: rgba(43, 24, 16, 0.75)
+                    }
+                }
+            }
+        }
+
+        &__close {
+            position: absolute;
+            right: 1%;
+            top: 3%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 145, 120);
+            cursor: pointer;
+        }
+    }
+}
