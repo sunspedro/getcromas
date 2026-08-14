@@ -1,7 +1,5 @@
 import { motion } from "motion/react";
-import { ModalIntro } from "./modal/ModalIntro";
-import { ModalList } from "./modal/ModalList";
-import { ModalListItem } from "./modal/ModalListItem";
+import { ModalIntro, ModalListItem, ModalList } from "./index";
 
 export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
     return (
@@ -46,19 +44,19 @@ export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
                     <p>vou colocar um video mostrando o funcionamento</p>
                 </div>
                 <motion.div
-                    initial={{background: "rgb(255, 145, 120)"}}
-                    whileHover={{scale:1.1, background: "rgba(255, 145, 120, 0.9)"}}
-                className="home__modal__close" onClick={onClose}>
-                        <svg viewBox="0 0 24 24" fill="none" height={32} width={32}>
-                            <path
-                                id="Vector"
-                                d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
-                                stroke="#2b1810"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            ></path>
-                        </svg>
+                    whileHover={{ scale: 1.1 }}
+                    className="home__modal__close"
+                    onClick={onClose}
+                >
+                    <svg viewBox="0 0 24 24" fill="none" height={32} width={32}>
+                        <path
+                            id="Vector"
+                            d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        ></path>
+                    </svg>
                 </motion.div>
             </motion.div>
         </div>

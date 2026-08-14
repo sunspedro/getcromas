@@ -1,21 +1,41 @@
 import { useState } from "react";
-import { HomeHelpModal } from "./HomeHelpModal";
+import { motion } from "motion/react";
 import { SearchInput } from "./SearchInput";
+import { HomeHelpModal } from "./HomeHelpModal";
+import { IntroInfo } from "./IntroInfo";
 
-export const HomeView = ({ onSubmit }: { onSubmit: (value: string) => void }) => {
-    const [modal, setModal] = useState(false)
+export const HomeView = ({
+    onSubmit,
+    loading,
+    error,
+}: {
+    onSubmit: (value: string) => Promise<void>;
+    loading?: boolean;
+    error?: string | null;
+}) => {
+    const [modal, setModal] = useState(false);
     return (
         <>
             <div className="home__intro">
                 <h1 className="home__intro__title">Bem vindo ao seu gerador de paletas de cores!</h1>
-                <p className="home__intro__info">Descreva seu projeto e receba uma paleta com IA</p>
+                <IntroInfo />
             </div>
             <div className="home__search">
-                <SearchInput onSubmit={onSubmit} />
-                <p className="home__search__help" onClick={() => setModal(true)}>precisa de ajuda?</p>
+                <SearchInput onSubmit={onSubmit} loading={loading} />
+                {error && <p className="home__search__error">{error}</p>}
+                <motion.p
+                    className="home__search__help"
+                    onClick={() => setModal(true)}
+                >
+                    precisa de ajuda?
+                </motion.p>
             </div>
             {modal && (
-                <HomeHelpModal onClose={()=> {setModal(false)}}/>
+                <HomeHelpModal
+                    onClose={() => {
+                        setModal(false);
+                    }}
+                />
             )}
         </>
     );
