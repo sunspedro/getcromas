@@ -15,10 +15,18 @@ export const ResultsView = ({ pergunta, palette }: ResultsViewProps) => {
             </div>
             <div className="results__colors">
                 {palette.colors.map((color) => (
-                    <div key={color.label} className="results__colors__list">
-                        <strong>{color.label} - {color.name}</strong>
+                    <motion.div
+                        key={color.label}
+                        initial={{ background: `linear-gradient(to left, transparent 90%, ${color.hash} 10%)` }}
+                        whileHover={{ background: `linear-gradient(to left, ${color.hash} 10%,transparent 90%)` }}
+                        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+                        className="results__colors__list"
+                    >
+                        <strong>
+                            {color.label} - {color.name}
+                        </strong>
                         <p>{color.hash}</p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             <div className="results__text">
@@ -35,7 +43,7 @@ export const ResultsView = ({ pergunta, palette }: ResultsViewProps) => {
             <div className="results__final">
                 <div className="results__final__points">
                     <div>
-                        <h3>Pontos positivos</h3>
+                        <h3 className="results__final__points__title">Pontos positivos</h3>
                         <ul>
                             {palette.points.positive.map((point) => (
                                 <li key={point}>{point}</li>
@@ -43,7 +51,7 @@ export const ResultsView = ({ pergunta, palette }: ResultsViewProps) => {
                         </ul>
                     </div>
                     <div>
-                        <h3>Pontos de atenção</h3>
+                        <h3 className="results__final__points__title">Pontos de atenção</h3>
                         <ul>
                             {palette.points.negative.map((point) => (
                                 <li key={point}>{point}</li>
@@ -51,8 +59,10 @@ export const ResultsView = ({ pergunta, palette }: ResultsViewProps) => {
                         </ul>
                     </div>
                 </div>
-
-                <ul className="results__final__references">
+            </div>
+            <div className="results__references">
+                <h3 className="results__references__title">Referências</h3>
+                <ul className="results__references__list">
                     {palette.references.map((ref) => (
                         <li key={ref.title}>
                             <a href={ref.url} target="_blank" rel="noreferrer">

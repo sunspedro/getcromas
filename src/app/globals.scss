@@ -2,12 +2,10 @@ $color-bg: #fff8f3;
 $color-text: #2b1810;
 $color-white: #ffffff;
 $color-error: #c0392b;
-
 $color-accent: #ffaf87;
 $color-accent-light: #ffc8aa;
 $color-accent-soft: #ffdc;
 $color-accent-strong: #ff9178;
-
 $color-text-muted: color-mix(in srgb, $color-text 65%, transparent);
 $color-text-soft: color-mix(in srgb, $color-text 75%, transparent);
 $color-text-shadow: color-mix(in srgb, $color-text 20%, transparent);
@@ -255,9 +253,9 @@ p {
 }
 
 .results {
-    width: 100%;
+    display: grid;
     padding: 100px;
-    padding: 20px;
+    grid-template-columns: repeat(3, 1fr);
     color: $color-text;
     gap: 20px;
 
@@ -265,34 +263,109 @@ p {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        grid-column: 1/4;
 
         &__badge {
             letter-spacing: 2px;
             text-transform: uppercase;
+            color: $color-text;
             font-size: 12px;
         }
-
     }
-    &__colors{
+
+    &__colors {
         display: flex;
-        flex-direction: column;
         gap: 20px;
-        &__list{
+        grid-column: 1/4;
+
+        &__list {
+            padding: 10px 5px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 10px;
             gap: 6px;
+            box-shadow: 0 0 9px 1px #7b7b7b;
+
+            strong {
+                max-width: 90%;
+                margin-left: 10%;
+            }
+
+            p {
+                margin-left: 10%;
+            }
         }
     }
 
     &__text {
         display: flex;
         flex-direction: column;
-
+        grid-column: 1/3;
         padding: 20px;
         background-color: $color-text;
         color: $color-accent;
+        border-radius: 24px 0px 24px 0px;
+
+        &__contrast {
+            padding-top: 10px;
+            list-style-type: none;
+
+            li {
+                margin-top: 4px;
+            }
+        }
     }
 
     &__final {
+        grid-column: 3/4;
+
+        &__points {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-around;
+
+            &__title {
+                text-transform: uppercase;
+                color: #2b1810;
+            }
+
+            ul {
+                list-style-type: none;
+                list-style-position: inside;
+                position: relative;
+
+                li {
+                    margin-left: 10px;
+                }
+
+                ::before {
+                    content: "•";
+                    left: 0;
+                    position: absolute;
+                    color: #2b1810;
+                }
+            }
+        }
+    }
+
+    &__references {
+        padding-top: 20px;
+        grid-column: 1/4;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        &__title{
+            font-size: 18px;
+        }
+
+        &__list {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+        }
     }
 }

@@ -6,7 +6,13 @@ import { getSystemPrompt } from "./systemPrompt";
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
-const DEFAULT_MODEL = "google/gemini-2.0-flash-001";
+const DEFAULT_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
+
+const FALLBACK_MODELS = [
+    "dots-studio/dots-3-note-preview:free",
+    "nvidia/nemotron-nano-9b-v2:free",
+    "google/gemma-4-26b-a4b-it:free",
+];
 
 export async function generatePalette(briefing: string): Promise<Palette> {
     const apiKey = process.env.OPENROUTER_API_KEY;
@@ -14,6 +20,8 @@ export async function generatePalette(briefing: string): Promise<Palette> {
     if (!apiKey) {
         throw new Error("OPENROUTER_API_KEY não configurada");
     }
+
+    const primary = process.env.OPENROUTER_MODEL ?? DEFAULT_MODEL;
 
     const response = await fetch(OPENROUTER_URL, {
         method: "POST",
@@ -29,13 +37,17 @@ export async function generatePalette(briefing: string): Promise<Palette> {
         },
 
         body: JSON.stringify({
-            model: process.env.OPENROUTER_MODEL ?? DEFAULT_MODEL,
+            model: primary,
+
+            models: FALLBACK_MODELS.filter((model) => model !== primary),
 
             provider: {
                 allow_fallbacks: true,
             },
 
             max_tokens: Number(process.env.OPENROUTER_MAX_TOKENS ?? 4096),
+
+            reasoning: { enabled: false },
 
             messages: [
                 { role: "system", content: getSystemPrompt() },
