@@ -196,11 +196,13 @@ Cada referência deve conter:
 Nome
 Tipo de referência
 Breve explicação de por que é relevante
-URL válida, quando disponível
+URL apenas se você tiver certeza absoluta de que ela existe e está correta; caso contrário, deixe vazio
 
 As referências devem possuir relação real com a paleta ou com o conceito apresentado.
 
-Não invente URLs, sites, marcas, artigos ou projetos.
+Não invente URLs, sites, marcas, artigos ou projetos. Nunca monte links plausíveis ou adivinhe caminhos de URL.
+
+É preferível citar uma referência real sem link do que incluir uma URL falsa.
 
 Se não houver uma referência específica confiável, é preferível informar que não foi encontrada uma referência adequada do que criar uma falsa.
 

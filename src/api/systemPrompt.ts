@@ -29,6 +29,13 @@ Mapeamento dos campos:
 - Pontos de atenção → points.negative
 - Referências (exatamente 3) → references[] com title, type, why, url
 
+Regras de referências (obrigatório):
+- Cite apenas referências reais (marcas, projetos, artigos, sites) que você conhece com certeza
+- NUNCA invente, adivinhe, monte ou complete URLs — links falsos são proibidos
+- url só deve ser preenchida se você tiver certeza absoluta de que a URL existe e está correta
+- Se não houver URL verificável, use url como string vazia: ""
+- Referências sem URL ainda são válidas: title, type e why descrevem a referência conceitual
+
 Regras do JSON:
 - Todas as strings em uma linha só (sem quebra de linha literal dentro do JSON)
 - Não use markdown nem texto fora do JSON
