@@ -2,8 +2,17 @@ const GENERIC_WORDS = new Set([
     "site", "web", "app", "loja", "blog", "page", "landing", "ui", "ux", "logo",
 ]);
 
+const VOWEL = /[aeiouyáéíóúàèìòùâêîôûãõäöü]/i;
+const CONSONANT_CLUSTER = /[b-df-hj-np-tv-xzÇçÑñ]{6,}/i;
+
 function countVowels(text: string): number {
-    return (text.match(/[aeiouAEIOUÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕ]/g) ?? []).length;
+    let count = 0;
+    for (const ch of text) {
+        if (VOWEL.test(ch)) {
+            count++;
+        }
+    }
+    return count;
 }
 
 function isGibberishToken(token: string): boolean {
@@ -16,21 +25,11 @@ function isGibberishToken(token: string): boolean {
         return true;
     }
 
-    if (/[b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]{6,}/.test(letters)) {
+    if (CONSONANT_CLUSTER.test(letters)) {
         return true;
     }
 
-    const vowelRatio = countVowels(letters) / letters.length;
-
-    if (letters.length >= 6 && vowelRatio < 0.3) {
-        return true;
-    }
-
-    if (letters.length >= 8 && /^[A-Z0-9]+$/i.test(letters) && vowelRatio < 0.35) {
-        return true;
-    }
-
-    return false;
+    return countVowels(letters) === 0;
 }
 
 function splitTokens(briefing: string): string[] {

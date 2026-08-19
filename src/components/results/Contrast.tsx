@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import type { Palette } from "../../types/palette";
 import { ContrastModal } from "./modal/ContrastModal";
+import { isContrastApproved, resolveContrastPair } from "./resolveContrastPair";
 
 interface IContrast {
     lista: Palette["contrast"];
@@ -44,24 +45,43 @@ export const Contrast = ({ lista, colors }: IContrast) => {
                 </p>
             </div>
             <ul ref={listRef} className="results__content__contrast__list">
-                {lista.map((item) => (
-                    <motion.li
-                        className={openLabel === item.label ? "is-open" : undefined}
-                        onClick={() => setOpenLabel((prev) => (prev === item.label ? null : item.label))}
-                        initial={
-                            item.situation === "Aprovado"
-                                ? { background: "linear-gradient(to left, #27ae60 0%, #fff 20%)" }
-                                : { background: "linear-gradient(to left, #e74c3c 0%, #fff 20%)" }
-                        }
-                        whileHover={openLabel === item.label ? { cursor: "pointer" } : { scale: 0.9, cursor: "pointer" }}
-                        key={item.label}
-                    >
-                        {item.label}: {item.contrast} — {item.situation}
-                        <AnimatePresence>
-                            {openLabel === item.label && <ContrastModal item={item} colors={colors} />}
-                        </AnimatePresence>
-                    </motion.li>
-                ))}
+                {lista.map((item) => {
+                    const open = openLabel === item.label;
+                    const approved = isContrastApproved(item.situation);
+                    const pair = resolveContrastPair(item.label, colors);
+
+                    return (
+                        <motion.li
+                            key={item.label}
+                            className={`results__content__contrast__item${open ? " is-open" : ""}${approved ? " is-pass" : " is-fail"}`}
+                            onClick={() => setOpenLabel((prev) => (prev === item.label ? null : item.label))}
+                            role="button"
+                            tabIndex={0}
+                            aria-expanded={open}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter" || event.key === " ") {
+                                    event.preventDefault();
+                                    setOpenLabel((prev) => (prev === item.label ? null : item.label));
+                                }
+                            }}
+                        >
+                            {pair && (
+                                <span className="results__content__contrast__item-swatches" aria-hidden="true">
+                                    <span style={{ backgroundColor: pair[0].hash }} />
+                                    <span style={{ backgroundColor: pair[1].hash }} />
+                                </span>
+                            )}
+                            <span className="results__content__contrast__item-info">
+                                <span className="results__content__contrast__item-label">{item.label}</span>
+                                <span className="results__content__contrast__item-ratio">{item.contrast}</span>
+                            </span>
+                            <span className="results__content__contrast__item-status">{item.situation}</span>
+                            <AnimatePresence>
+                                {open && <ContrastModal item={item} colors={colors} pair={pair} />}
+                            </AnimatePresence>
+                        </motion.li>
+                    );
+                })}
             </ul>
         </div>
     );

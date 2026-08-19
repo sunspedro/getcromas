@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "motion/react";
-import { Intro, SearchInput, HomeHelpModal } from "./home/_index";
+import { AnimatePresence, motion } from "motion/react";
+import { Intro, SearchInput, HomeHelpModal, HomeLoading } from "./home/_index";
 
 export const HomeView = ({
     onSubmit,
@@ -34,6 +34,9 @@ export const HomeView = ({
                     }}
                 />
             )}
+            <AnimatePresence>
+                {loading && <HomeLoading />}
+            </AnimatePresence>
         </>
     );
 };

@@ -1,24 +1,27 @@
-import { motion, AnimatePresence, Variants } from "motion/react";
-const navVariants: Variants = {
-    hidden: {},
-    visible: {
-        transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.1,
-        },
-    },
-};
+import { motion, type Variants } from "motion/react";
 
-const itemVariants: Variants = {
-    hidden: { opacity: 0, x: 15, scale: 0.6 },
-    visible: {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        transition: { type: "spring", stiffness: 300, damping: 20 },
-    },
-    exit: { opacity: 0, x: 15, scale: 0.6 },
-};
+function itemVariants(index: number): Variants {
+    return {
+        hidden: { opacity: 0, y: 18, scale: 0.45 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring",
+                stiffness: 280,
+                damping: 18,
+                delay: (2 - index) * 0.07,
+            },
+        },
+        exit: {
+            opacity: 0,
+            y: 12,
+            scale: 0.5,
+            transition: { duration: 0.16, delay: index * 0.04, ease: [0.4, 0, 1, 1] },
+        },
+    };
+}
 
 export const FloatModalLinks = () => {
     return (
@@ -27,8 +30,7 @@ export const FloatModalLinks = () => {
                 href="https://br.linkedin.com/in/pedro-battasini"
                 target="_blank"
                 className="float-modal__nav__item"
-                variants={itemVariants}
-                initial={{ cursor: "pointer" }}
+                variants={itemVariants(0)}
             >
                 <svg viewBox="0 0 382 382" xmlSpace="preserve" fill="#000000">
                     <path
@@ -42,8 +44,7 @@ export const FloatModalLinks = () => {
                 href="https://www.instagram.com/pedro.sxn"
                 target="_blank"
                 className="float-modal__nav__item"
-                variants={itemVariants}
-                initial={{ cursor: "pointer" }}
+                variants={itemVariants(1)}
             >
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" strokeWidth="0.576">
                     <g strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.096"></g>
@@ -72,8 +73,7 @@ export const FloatModalLinks = () => {
                 href="https://wa.me/5554984036584"
                 target="_blank"
                 className="float-modal__nav__item"
-                variants={itemVariants}
-                initial={{ cursor: "pointer" }}
+                variants={itemVariants(2)}
             >
                 <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2b1810">
                     <path

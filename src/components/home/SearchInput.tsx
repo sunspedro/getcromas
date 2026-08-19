@@ -11,7 +11,7 @@ export const SearchInput = ({
     loading?: boolean;
 }) => {
     const [value, setValue] = useState("");
-    const [search, setSearch] = useState(0);
+    const [focused, setFocused] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const syncHeight = () => {
@@ -41,32 +41,33 @@ export const SearchInput = ({
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             handleGenerate();
-            setSearch(0);
         }
     };
 
     return (
-        <div className="home__search__input-wrapper">
-            <motion.textarea
+        <motion.div
+            className="home__search__input-wrapper"
+            animate={{ scale: focused ? 1.05 : 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        >
+            <textarea
                 ref={textareaRef}
                 rows={1}
                 className="home__search__input-wrapper__input"
                 value={value}
-                whileFocus={{ scale: 1.05 }}
-                onFocus={() => setSearch(10)}
-                onBlur={() => setSearch(0)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
                 onChange={(e) => setValue(e.target.value)}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 onKeyDown={handleKeyDown}
                 disabled={loading}
                 required
                 placeholder={loading ? "Gerando paleta..." : "Digite o que deseja buscar"}
             />
-            <motion.button
-                animate={{ x: search }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            <button
                 type="button"
+                aria-label="Buscar"
                 className="home__search__input-wrapper__search-button"
+                onMouseDown={(e) => e.preventDefault()}
                 onClick={handleGenerate}
                 disabled={loading}
             >
@@ -76,7 +77,7 @@ export const SearchInput = ({
                         strokeLinecap="round"
                     ></path>
                 </svg>
-            </motion.button>
-        </div>
+            </button>
+        </motion.div>
     );
 };

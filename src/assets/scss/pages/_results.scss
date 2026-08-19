@@ -74,7 +74,8 @@
             flex-direction: column;
             background-color: #c0392b;
             gap: 22px;
-            padding: 10px 12px;
+            padding: 16px 14px;
+            border-radius: 20px;
 
             &__text {
                 display: flex;
@@ -95,27 +96,96 @@
                 list-style-type: none;
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 12px;
                 overflow: visible;
+            }
 
-                li {
+            &__item {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                min-height: 72px;
+                padding: 12px 14px;
+                background-color: $color-white;
+                border-radius: 16px;
+                color: $color-text;
+                box-shadow: 0 4px 16px $color-text-shadow;
+                cursor: pointer;
+                outline: none;
+                transition: background-color 0.2s ease;
+
+                &.is-open {
+                    z-index: 8;
+                }
+
+                &.is-pass:hover {
+                    background-color: color-mix(in srgb, #27ae60 50%, $color-white);
+                }
+
+                &.is-fail:hover {
+                    background-color: color-mix(in srgb, #e74c3c 50%, $color-white);
+                }
+
+                &:focus-visible {
+                    outline: 2px solid $color-white;
+                    outline-offset: 2px;
+                }
+
+                &-swatches {
                     position: relative;
-                    z-index: 1;
-                    box-shadow: 0 4px 16px $color-text-shadow;
-                    text-align: center;
-                    background-color: #fff;
-                    border-radius: 999;
-                    color: #2b1810;
-                    padding: 10px;
-                    font-size: 16px;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    flex-shrink: 0;
+                    width: 38px;
+                    height: 24px;
 
-                    &.is-open {
-                        z-index: 8;
+                    span {
+                        position: absolute;
+                        top: 1px;
+                        width: 22px;
+                        height: 22px;
+                        border-radius: 50%;
+                        border: 2px solid $color-white;
+                        box-shadow: 0 0 0 1px $color-text-shadow;
+
+                        &:first-child {
+                            left: 0;
+                            z-index: 1;
+                        }
+
+                        &:last-child {
+                            left: 14px;
+                            z-index: 2;
+                        }
                     }
+                }
+
+                &-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                    min-width: 0;
+                    flex: 1;
+                }
+
+                &-label {
+                    font-size: 12px;
+                    color: $color-text-muted;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                &-ratio {
+                    font-family: var(--font-heading);
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1.15;
+                }
+
+                &-status {
+                    flex-shrink: 0;
+                    font-size: 14px;
                 }
             }
         }
@@ -234,10 +304,6 @@
                 &__list {
                     display: flex;
                     flex-direction: column;
-
-                    li {
-                        padding-block: 18px;
-                    }
                 }
             }
         }

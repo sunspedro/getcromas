@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import type { Palette } from "../../../types/palette";
+import { resolveContrastPair } from "../resolveContrastPair";
 
 type ContrastItem = Palette["contrast"][number];
 type PaletteColor = Palette["colors"][number];
@@ -7,30 +8,11 @@ type PaletteColor = Palette["colors"][number];
 interface ContrastModalProps {
     item: ContrastItem;
     colors: PaletteColor[];
+    pair?: [PaletteColor, PaletteColor] | null;
 }
 
-function resolvePair(label: string, colors: PaletteColor[]): [PaletteColor, PaletteColor] | null {
-    const found = colors
-        .filter((color) => label.toLowerCase().includes(color.label.toLowerCase()))
-        .sort(
-            (a, b) =>
-                label.toLowerCase().indexOf(a.label.toLowerCase()) -
-                label.toLowerCase().indexOf(b.label.toLowerCase()),
-        );
-
-    if (found.length >= 2) {
-        return [found[0], found[1]];
-    }
-
-    if (colors.length >= 2) {
-        return [colors[0], colors[1]];
-    }
-
-    return null;
-}
-
-export const ContrastModal = ({ item, colors }: ContrastModalProps) => {
-    const pair = resolvePair(item.label, colors);
+export const ContrastModal = ({ item, colors, pair: pairProp }: ContrastModalProps) => {
+    const pair = pairProp ?? resolveContrastPair(item.label, colors);
 
     if (!pair) {
         return null;
