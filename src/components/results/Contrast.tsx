@@ -1,16 +1,39 @@
-import { motion } from "motion/react";
+"use client";
 
-interface IContrastItem {
-    label: string;
-    contrast: string | number;
-    situation: "Aprovado" | "Reprovado" | string;
-}
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import type { Palette } from "../../types/palette";
+import { ContrastModal } from "./modal/ContrastModal";
 
 interface IContrast {
-    lista: IContrastItem[];
+    lista: Palette["contrast"];
+    colors: Palette["colors"];
 }
 
-export const Contrast = ({lista}: IContrast) => {
+export const Contrast = ({ lista, colors }: IContrast) => {
+    const [openLabel, setOpenLabel] = useState<string | null>(null);
+    const listRef = useRef<HTMLUListElement>(null);
+
+    useEffect(() => {
+        if (!openLabel) {
+            return;
+        }
+
+        const onPointerDown = (event: PointerEvent) => {
+            if (listRef.current?.contains(event.target as Node)) {
+                return;
+            }
+
+            setOpenLabel(null);
+        };
+
+        document.addEventListener("pointerdown", onPointerDown);
+
+        return () => {
+            document.removeEventListener("pointerdown", onPointerDown);
+        };
+    }, [openLabel]);
+
     return (
         <div className="results__content__contrast">
             <div className="results__content__contrast__text">
@@ -20,18 +43,23 @@ export const Contrast = ({lista}: IContrast) => {
                     interface permaneçam legíveis em qualquer contexto de uso. Clique para ver mais!
                 </p>
             </div>
-            <ul className="results__content__contrast__list">
+            <ul ref={listRef} className="results__content__contrast__list">
                 {lista.map((item) => (
                     <motion.li
+                        className={openLabel === item.label ? "is-open" : undefined}
+                        onClick={() => setOpenLabel((prev) => (prev === item.label ? null : item.label))}
                         initial={
                             item.situation === "Aprovado"
                                 ? { background: "linear-gradient(to left, #27ae60 0%, #fff 20%)" }
                                 : { background: "linear-gradient(to left, #e74c3c 0%, #fff 20%)" }
                         }
-                        whileHover={{ scale: 0.9, cursor: "pointer" }}
+                        whileHover={openLabel === item.label ? { cursor: "pointer" } : { scale: 0.9, cursor: "pointer" }}
                         key={item.label}
                     >
                         {item.label}: {item.contrast} — {item.situation}
+                        <AnimatePresence>
+                            {openLabel === item.label && <ContrastModal item={item} colors={colors} />}
+                        </AnimatePresence>
                     </motion.li>
                 ))}
             </ul>

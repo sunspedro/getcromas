@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="pt"
     >
       <body className={`${fraunces.variable} ${karla.variable}`}>{children}</body>
     </html>

@@ -17,7 +17,7 @@ export const ResultsView = ({ pergunta, palette }: ResultsViewProps) => {
             </div>
             <div className="results__content">
                 <Summary title="Resumo da paleta" description={palette.description} />
-                <Contrast lista={palette.contrast} />
+                <Contrast lista={palette.contrast} colors={palette.colors} />
             </div>
             <div className="results__final">
                 <Points positivePoints={palette.points.positive} attentionPoints={palette.points.negative} />
