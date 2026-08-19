@@ -1,9 +1,7 @@
 'use client'
 import { useState } from "react";
 import { Palette } from "../types/palette";
-import { FloatModal } from "../components/FloatModal";
-import { HomeView } from "../components/HomeView";
-import { ResultsView } from "../components/ResultsView";
+import { FloatModal, HomeView, ResultsView } from "../components/_index";
 
 type ViewState = 'home' | 'results';
 

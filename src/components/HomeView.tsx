@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Intro, SearchInput, HomeHelpModal } from "./home";
+import { Intro, SearchInput, HomeHelpModal } from "./home/_index";
 
 export const HomeView = ({
     onSubmit,

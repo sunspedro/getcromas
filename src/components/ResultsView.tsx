@@ -1,5 +1,5 @@
 import { Palette } from "../types/palette";
-import { Intro, Colors, Summary, Contrast, Points, References } from "./results";
+import { Intro, Colors, Summary, Contrast, Points, References } from "./results/_index";
 
 interface ResultsViewProps {
     pergunta: string;
