@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../assets/scss/globals.scss";
 import { Fraunces, Karla } from 'next/font/google';
 
@@ -16,7 +16,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="pt"
     >
-      <body className={`${fraunces.variable} ${karla.variable}`}>{children}</body>
+      <body className={`${fraunces.variable} ${karla.variable}`}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

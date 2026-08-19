@@ -250,26 +250,22 @@
             &__title {
                 text-transform: uppercase;
                 color: $color-text;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
                 font-size: 22px;
+                font-weight: 700;
             }
 
             ul {
-                list-style-type: none;
-                list-style-position: inside;
-                position: relative;
+                list-style: disc;
+                padding-left: 1.25em;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
 
                 li {
-                    margin-left: 10px;
-                    margin-top: 5px;
                     color: $color-text-soft;
-                }
-
-                ::before {
-                    content: "•";
-                    left: 0;
-                    position: absolute;
-                    color: $color-text-soft;
+                    font-size: 15px;
+                    line-height: 1.5;
                 }
             }
         }

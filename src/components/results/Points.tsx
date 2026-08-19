@@ -9,16 +9,16 @@ export const Points = ({ positivePoints, attentionPoints }: IPoints) => {
             <div>
                 <h3 className="results__final__points__title">Pontos positivos</h3>
                 <ul>
-                    {positivePoints.map((point) => (
-                        <li key={point}>{point}</li>
+                    {positivePoints.map((point, index) => (
+                        <li key={`positive-${index}`}>{point}</li>
                     ))}
                 </ul>
             </div>
             <div>
                 <h3 className="results__final__points__title">Pontos de atenção</h3>
                 <ul>
-                    {attentionPoints.map((point) => (
-                        <li key={point}>{point}</li>
+                    {attentionPoints.map((point, index) => (
+                        <li key={`attention-${index}`}>{point}</li>
                     ))}
                 </ul>
             </div>

@@ -3,13 +3,20 @@ import { ModalIntro, ModalList } from "./modal/_index";
 
 export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
     return (
-        <div className="home__modal--overlay" onClick={onClose}>
+        <motion.div
+            className="home__modal--overlay"
+            onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+        >
             <motion.div
                 className="home__modal"
-                initial={{ y: 800 }}
-                animate={{ y: 0 }}
-                exit={{ y: 800 }}
-                transition={{ type: "spring", stiffness: 50, damping: 16, duration: 0.5 }}
+                initial={{ opacity: 0, y: 32, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 280, damping: 26 }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="home__modal__text">
@@ -35,6 +42,6 @@ export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
                     </svg>
                 </motion.div>
             </motion.div>
-        </div>
+        </motion.div>
     );
 };

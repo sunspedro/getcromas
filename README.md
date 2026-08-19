@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GetCromas
 
-## Getting Started
+Gerador de paletas de cores com IA a partir de um briefing textual. Descreva o projeto — segmento, sensação, estilo — e receba uma paleta de 5 cores com funções definidas, análise de contraste WCAG, pontos positivos/atenção e referências visuais.
 
-First, run the development server:
+## Funcionalidades
+
+- **Briefing livre** — descreva o projeto em linguagem natural
+- **Paleta estruturada** — 5 cores com papéis: Background, Primary, Text, Secondary e Accent
+- **Contraste WCAG** — combinações avaliadas com ratio e situação (aprovado/não recomendado)
+- **Análise da paleta** — descrição, pontos positivos, pontos de atenção e referências
+- **Modal de contraste** — visualização interativa das combinações de cores
+- **Animações** — transições na home, loading e resultados (Motion)
+
+## Stack
+
+| Camada | Tecnologia |
+|--------|------------|
+| Framework | [Next.js 16](https://nextjs.org) (App Router) |
+| UI | React 19, SCSS modular |
+| Animações | [Motion](https://motion.dev) |
+| IA | [OpenRouter](https://openrouter.ai) (modelos free com fallback) |
+| Deploy | Vercel (Speed Insights) |
+
+## Pré-requisitos
+
+- Node.js 20+
+- Conta no [OpenRouter](https://openrouter.ai) com API key
+
+## Configuração
+
+1. Clone o repositório e instale dependências:
+
+```bash
+git clone <url-do-repo>
+cd getcromas
+npm install
+```
+
+2. Crie um arquivo `.env.local` na raiz:
+
+```env
+OPENROUTER_API_KEY=sua_chave_aqui
+
+# Opcionais
+OPENROUTER_MODEL=nvidia/nemotron-3-super-120b-a12b:free
+OPENROUTER_MAX_TOKENS=4096
+OPENROUTER_SITE_URL=http://localhost:3000
+OPENROUTER_SITE_NAME=GetCromas
+```
+
+3. Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Build de produção |
+| `npm run start` | Servidor de produção |
+| `npm run lint` | ESLint |
 
-## Learn More
+## Estrutura do projeto
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                  # App Router (layout, page, API route)
+│   └── api/palette/      # POST /api/palette
+├── api/                  # Lógica da API (OpenRouter, validação, parse)
+├── components/
+│   ├── home/             # Home: intro, busca, modal de ajuda, loading
+│   ├── results/          # Resultados: cores, contraste, pontos, referências
+│   └── general/          # Componentes compartilhados (FloatModal)
+├── assets/scss/          # Estilos SCSS modularizados
+│   ├── abstracts/        # Variáveis
+│   ├── base/             # Reset, tipografia
+│   ├── components/       # Modais
+│   └── pages/            # Home e resultados
+└── types/                # Tipos TypeScript (Palette, JSON schema)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Fluxo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Usuário envia briefing na home (`SearchInput`)
+2. `POST /api/palette` valida o briefing e chama OpenRouter
+3. IA retorna JSON estruturado (schema strict) com paleta completa
+4. App exibe `ResultsView` com cores, contraste, resumo e referências
 
-## Deploy on Vercel
+O prompt de sistema e as regras de geração estão em `src/api/systemPrompt.ts` e `context.md`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Compatível com [Vercel](https://vercel.com). Configure as variáveis de ambiente `OPENROUTER_*` no painel do projeto antes do deploy.
+
+```bash
+npm run build
+```
+
+## Licença
+
+Projeto privado.

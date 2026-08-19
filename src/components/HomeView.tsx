@@ -27,13 +27,15 @@ export const HomeView = ({
                     precisa de ajuda?
                 </motion.p>
             </div>
-            {modal && (
-                <HomeHelpModal
-                    onClose={() => {
-                        setModal(false);
-                    }}
-                />
-            )}
+            <AnimatePresence>
+                {modal && (
+                    <HomeHelpModal
+                        onClose={() => {
+                            setModal(false);
+                        }}
+                    />
+                )}
+            </AnimatePresence>
             <AnimatePresence>
                 {loading && <HomeLoading />}
             </AnimatePresence>
