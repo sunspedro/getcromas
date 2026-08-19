@@ -4,3 +4,4 @@ export { Points } from "./Points";
 export { References } from "./References";
 export { Summary } from "./Summary";
 export { Colors } from "./Colors";
+export { PalettePreviewPanel } from "./PalettePreviewPanel";

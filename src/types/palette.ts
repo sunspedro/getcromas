@@ -55,7 +55,7 @@ export const paletteJsonSchema = {
                     title: { type: "string" },
                     type: { type: "string" },
                     why: { type: "string" },
-                    url: { type: "string" },
+                    url: { type: "string", minLength: 1 },
                 },
                 required: ["title", "type", "why", "url"],
                 additionalProperties: false,

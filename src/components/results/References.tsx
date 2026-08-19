@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { resolveReferenceHref } from "./normalizeReferenceUrl";
 
 interface IReferenceItem {
     title: string;
@@ -11,32 +11,32 @@ interface IReferences {
     references: IReferenceItem[];
 }
 
-export const References = ({references}: IReferences) => {
+export const References = ({ references }: IReferences) => {
     return (
-        <>
+        <div className="results__references__content">
             <h3 className="results__references__title">Referências</h3>
             <ul className="results__references__list">
-                {references.map((ref) => (
-                    <motion.li
-                        initial={{ borderRadius: "12px 0px 12px 0px" }}
-                        whileHover={{ borderRadius: "12px 12px 0px 0px", borderBottom: "2px solid #2b1810" }}
-                        transition={{ type: "spring", stiffness: 500, damping: 50 }}
-                        className="results__references__list__item"
-                        key={ref.title}
-                    >
-                        {ref.url.trim() ? (
-                            <a href={ref.url} target="_blank" rel="noreferrer">
-                                {ref.title} — {ref.type}
+                {references.map((ref) => {
+                    const href = resolveReferenceHref(ref.url, ref.title);
+
+                    return (
+                        <li key={ref.title}>
+                            <a
+                                href={href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="results__references__list__link"
+                            >
+                                <div className="results__references__list__item">
+                                    <span className="results__references__list__item-type">{ref.type}</span>
+                                    <span className="results__references__list__item-title">{ref.title}</span>
+                                    <p className="results__references__list__item-description">{ref.why}</p>
+                                </div>
                             </a>
-                        ) : (
-                            <span>
-                                {ref.title} — {ref.type}
-                            </span>
-                        )}
-                        <p>{ref.why}</p>
-                    </motion.li>
-                ))}
+                        </li>
+                    );
+                })}
             </ul>
-        </>
+        </div>
     );
 };

@@ -1,5 +1,5 @@
 import { Palette } from "../types/palette";
-import { Intro, Colors, Summary, Contrast, Points, References } from "./results/_index";
+import { Intro, Colors, Summary, Contrast, Points, References, PalettePreviewPanel } from "./results/_index";
 
 interface ResultsViewProps {
     palette: Palette;
@@ -22,6 +22,7 @@ export const ResultsView = ({ palette }: ResultsViewProps) => {
                 <Points positivePoints={palette.points.positive} attentionPoints={palette.points.negative} />
             </div>
             <div className="results__references">
+                <PalettePreviewPanel title={palette.title} colors={palette.colors} />
                 <References references={palette.references} />
             </div>
         </div>

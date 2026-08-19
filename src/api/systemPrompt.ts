@@ -31,10 +31,10 @@ Mapeamento dos campos:
 
 Regras de referências (obrigatório):
 - Cite apenas referências reais (marcas, projetos, artigos, sites) que você conhece com certeza
-- NUNCA invente, adivinhe, monte ou complete URLs — links falsos são proibidos
-- url só deve ser preenchida se você tiver certeza absoluta de que a URL existe e está correta
-- Se não houver URL verificável, use url como string vazia: ""
-- Referências sem URL ainda são válidas: title, type e why descrevem a referência conceitual
+- url é obrigatória nas 3 referências — nunca deixe vazia
+- Use a homepage oficial ou o artigo real (https://...) quando conhecer com certeza
+- NUNCA invente, adivinhe, monte ou complete caminhos de URL (ex.: /about/colors)
+- Se não souber o path exato, use só o domínio oficial: https://marca.com
 
 Regras do JSON:
 - Todas as strings em uma linha só (sem quebra de linha literal dentro do JSON)

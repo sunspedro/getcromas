@@ -1,0 +1,300 @@
+@use "../abstracts" as *;
+
+.palette-preview-landing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid;
+    }
+
+    &__logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+
+        &:hover {
+            transform: scale(1.08) rotate(-4deg);
+        }
+    }
+
+    &__nav {
+        display: flex;
+        gap: 16px;
+        font-size: 13px;
+        opacity: 0.85;
+
+        span {
+            cursor: default;
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+                transform: translateY(-1px);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+        }
+    }
+
+    &__hero {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 20px 8px;
+    }
+
+    &__hero-title {
+        font-size: clamp(22px, 3vw, 32px);
+        line-height: 1.2;
+        font-weight: 700;
+    }
+
+    &__hero-subtitle {
+        font-size: 15px;
+        line-height: 1.5;
+        max-width: 52ch;
+        opacity: 0.9;
+    }
+
+    &__cta {
+        align-self: flex-start;
+        margin-top: 4px;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: default;
+        transition:
+            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+            filter 0.25s ease,
+            box-shadow 0.25s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+            box-shadow: 0 6px 16px color-mix(in srgb, currentColor 18%, transparent);
+        }
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 0 20px 20px;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid;
+        transition:
+            transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px color-mix(in srgb, $color-text 16%, transparent);
+
+            .palette-preview-landing__card-badge {
+                transform: scale(1.08);
+            }
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.45;
+            opacity: 0.9;
+        }
+    }
+
+    &__card-badge {
+        align-self: flex-start;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        transition: transform 0.25s ease;
+    }
+
+    &--compact {
+        gap: 10px;
+        pointer-events: none;
+        user-select: none;
+
+        .palette-preview-landing__header {
+            padding: 8px 12px;
+        }
+
+        .palette-preview-landing__logo {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .palette-preview-landing__nav {
+            gap: 8px;
+            font-size: 9px;
+        }
+
+        .palette-preview-landing__hero {
+            padding: 0 12px 4px;
+            gap: 6px;
+        }
+
+        .palette-preview-landing__hero-title {
+            font-size: 14px;
+        }
+
+        .palette-preview-landing__hero-subtitle {
+            font-size: 9px;
+            line-height: 1.35;
+        }
+
+        .palette-preview-landing__cta {
+            padding: 4px 10px;
+            font-size: 9px;
+        }
+
+        .palette-preview-landing__cards {
+            gap: 6px;
+            padding: 0 12px 12px;
+        }
+
+        .palette-preview-landing__card {
+            padding: 8px;
+            gap: 4px;
+
+            h3 {
+                font-size: 10px;
+            }
+
+            p {
+                font-size: 8px;
+            }
+        }
+
+        .palette-preview-landing__card-badge {
+            padding: 1px 5px;
+            font-size: 7px;
+        }
+    }
+}
+
+.palette-preview-modal {
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 16px;
+        background: color-mix(in srgb, $color-text 35%, transparent);
+        backdrop-filter: blur(4px);
+    }
+
+    position: relative;
+    width: min(920px, 100%);
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 28px;
+    border-radius: 16px;
+    background-color: $color-text;
+    color: $color-white;
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 18px;
+        padding-right: 40px;
+    }
+
+    &__title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    &__subtitle {
+        font-size: 14px;
+        color: $color-text-muted;
+    }
+
+    &__content {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px color-mix(in srgb, $color-text 25%, transparent);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 12px 40px color-mix(in srgb, $color-text 30%, transparent);
+        }
+    }
+
+    &__close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: $color-white;
+        cursor: pointer;
+        transition:
+            background-color 0.25s ease,
+            transform 0.25s ease;
+
+        &:hover {
+            background-color: $color-accent-strong;
+            transform: scale(1.08);
+        }
+
+        svg path {
+            stroke: currentColor;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 44px 16px 20px;
+        max-height: calc(100dvh - 1.5rem);
+
+        &__header {
+            margin-bottom: 14px;
+        }
+
+        &__title {
+            font-size: 18px;
+        }
+
+        .palette-preview-landing__cards {
+            grid-template-columns: 1fr;
+        }
+    }
+}
