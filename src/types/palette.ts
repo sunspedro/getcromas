@@ -7,6 +7,19 @@ export type Palette = {
     references: { title: string; type: string; why: string; url: string }[];
 };
 
+export type SavedPalette = {
+    id: string;
+    createdAt: number;
+    pinned: boolean;
+    briefing: string;
+    palette: Palette;
+};
+
+export type PaletteStore = {
+    version: 1;
+    items: SavedPalette[];
+};
+
 export const paletteJsonSchema = {
     type: "object",
     properties: {
