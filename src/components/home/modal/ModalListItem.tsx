@@ -11,7 +11,7 @@ const itemVariants = {
 };
 export const ModalListItem = ({ badge, title, description }: IModalListItem) => {
     return (
-        <motion.li variants={itemVariants} className="item" initial={{}} whileHover={{borderRadius: "0px 24px"}}>
+        <motion.li variants={itemVariants} className="item"  whileHover={{borderRadius: "0px 24px"}}>
             <p className="item--badge">{badge}</p>
             <p className="item--title">{title}</p>
             <p className="item--description">{description}</p>
