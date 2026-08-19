@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { SearchInput } from "./SearchInput";
-import { HomeHelpModal } from "./HomeHelpModal";
-import { IntroInfo } from "./IntroInfo";
+import { Intro, SearchInput, HomeHelpModal } from "./home";
 
 export const HomeView = ({
     onSubmit,
@@ -17,8 +15,7 @@ export const HomeView = ({
     return (
         <>
             <div className="home__intro">
-                <h1 className="home__intro__title">Bem vindo ao seu gerador de paletas de cores!</h1>
-                <IntroInfo />
+                <Intro />
             </div>
             <div className="home__search">
                 <SearchInput onSubmit={onSubmit} loading={loading} />

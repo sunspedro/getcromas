@@ -1,7 +1,9 @@
 'use client'
 import { useState } from "react";
-import { HomeView, ResultsView } from "../components";
 import { Palette } from "../types/palette";
+import { FloatModal } from "../components/FloatModal";
+import { HomeView } from "../components/HomeView";
+import { ResultsView } from "../components/ResultsView";
 
 type ViewState = 'home' | 'results';
 
@@ -50,6 +52,8 @@ export default function Home() {
             {view === 'results' && palette && (
                 <ResultsView pergunta={question} palette={palette} />
             )}
+
+            <FloatModal />
         </div>
     );
 }

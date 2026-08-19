@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
-import { ModalIntro, ModalListItem, ModalList } from "./index";
+import { ModalIntro } from "../modal/ModalIntro";
+import { ModalList } from "../modal/ModalList";
+import { ModalListItem } from "../modal/ModalListItem";
 
 export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
     return (
@@ -35,7 +37,7 @@ export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
                         <ModalListItem
                             badge="04"
                             title="Refine até ficar perfeito"
-                            description='  Não gostou de algo? Descreve o ajuste — "mais escuro", "menos verde", "mais minimalista" — e a paleta se adapta, sem precisar
+                            description='Não gostou de algo? Descreve o ajuste — "mais escuro", "menos verde", "mais minimalista" — e a paleta se adapta, sem precisar
                                 recomeçar do zero.'
                         />
                     </ModalList>
