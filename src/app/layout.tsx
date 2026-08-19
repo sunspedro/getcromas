@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "../assets/scss/globals.scss";
 import { Fraunces, Karla } from 'next/font/google';
 
