@@ -1,7 +1,5 @@
 import { motion } from "motion/react";
-import { ModalIntro } from "../modal/ModalIntro";
-import { ModalList } from "../modal/ModalList";
-import { ModalListItem } from "../modal/ModalListItem";
+import { ModalIntro, ModalList, ModalListItem } from "./modal";
 
 export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
     return (
