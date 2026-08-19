@@ -1,0 +1,46 @@
+.float-modal-trigger {
+    position: fixed;
+    z-index: 9999;
+    bottom: 10px;
+    right: 15px;
+    background-color: #fff;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+
+    &.active {
+        background-color: #ffc8aa;
+        border: none;
+        cursor: default;
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        background-image: url("/float-button.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+    }
+}
+
+.float-modal__nav {
+    display: flex;
+    gap: 20px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}

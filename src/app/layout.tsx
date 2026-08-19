@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.scss";
+import "../assets/scss/globals.scss";
 import { Fraunces, Karla } from 'next/font/google';
 
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-heading' });

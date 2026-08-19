@@ -1,0 +1,17 @@
+$color-bg: #fff8f3;
+$color-text: #2b1810;
+$color-white: #ffffff;
+$color-error: #c0392b;
+$color-accent: #ffaf87;
+$color-accent-light: #ffc8aa;
+$color-accent-soft: #ffdc;
+$color-accent-strong: #ff9178;
+$color-text-muted: color-mix(in srgb, $color-text 65%, transparent);
+$color-text-soft: color-mix(in srgb, $color-text 75%, transparent);
+$color-text-shadow: color-mix(in srgb, $color-text 20%, transparent);
+$color-on-surface-muted: color-mix(in srgb, $color-bg 50%, transparent);
+$color-accent-35: color-mix(in srgb, $color-accent 35%, transparent);
+$color-accent-light-30: color-mix(in srgb, $color-accent-light 30%, transparent);
+$color-accent-strong-20: color-mix(in srgb, $color-accent-strong 20%, transparent);
+$color-accent-soft-25: color-mix(in srgb, $color-accent-soft 25%, transparent);
+$color-accent-strong-90: color-mix(in srgb, $color-accent-strong 90%, transparent);

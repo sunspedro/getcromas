@@ -1,0 +1,51 @@
+@use "../abstracts" as *;
+
+.contrast-modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% + 12px);
+    z-index: 20;
+    padding: 14px 16px 16px;
+    background: $color-text;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 10px 28px $color-text-shadow;
+    cursor: default;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 8px solid transparent;
+        border-top-color: $color-text;
+    }
+
+    &__title {
+        font-size: 13px;
+        color: $color-white;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    &__content {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    &__sample {
+        flex: 1;
+        padding: 16px 8px;
+        border-radius: 12px;
+        font-weight: 700;
+        text-align: center;
+        font-size: 16px;
+    }
+}

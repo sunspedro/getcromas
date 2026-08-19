@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 export const SearchInput = ({
@@ -12,6 +12,23 @@ export const SearchInput = ({
 }) => {
     const [value, setValue] = useState("");
     const [search, setSearch] = useState(0);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    const syncHeight = () => {
+        const el = textareaRef.current;
+
+        if (!el) {
+            return;
+        }
+
+        el.style.height = "auto";
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.overflowY = el.scrollHeight > el.clientHeight ? "auto" : "hidden";
+    };
+
+    useLayoutEffect(() => {
+        syncHeight();
+    }, [value, loading]);
 
     const handleGenerate = async () => {
         if (!value.trim() || loading) {
@@ -20,17 +37,19 @@ export const SearchInput = ({
         await onSubmit(value);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
             handleGenerate();
-            setSearch(0)
+            setSearch(0);
         }
     };
 
     return (
         <div className="home__search__input-wrapper">
-            <motion.input
-                type="text"
+            <motion.textarea
+                ref={textareaRef}
+                rows={1}
                 className="home__search__input-wrapper__input"
                 value={value}
                 whileFocus={{ scale: 1.05 }}
@@ -44,7 +63,6 @@ export const SearchInput = ({
                 placeholder={loading ? "Gerando paleta..." : "Digite o que deseja buscar"}
             />
             <motion.button
-                initial={{ y: "-50%" }}
                 animate={{ x: search }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 type="button"

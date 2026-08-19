@@ -1,0 +1,231 @@
+@use "../abstracts" as *;
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100dvw;
+    background:
+        radial-gradient(at 20% 20%, $color-accent-35 0px, transparent 50%),
+        radial-gradient(at 80% 0%, $color-accent-light-30 0px, transparent 50%),
+        radial-gradient(at 80% 80%, $color-accent-strong-20 0px, transparent 50%),
+        radial-gradient(at 0% 100%, $color-accent-soft-25 0px, transparent 50%),
+        $color-bg;
+    gap: 50px;
+
+    &__logo {
+        position: fixed;
+        top: 0;
+        left: 10px;
+    }
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        &__title {
+            font-size: 32px;
+            font-weight: 700;
+            color: $color-text;
+            padding-inline: 20px;
+            text-align: center;
+        }
+
+        &__info {
+            width: fit-content;
+            color: $color-text-muted;
+        }
+    }
+
+    &__search {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+
+        &__input-wrapper {
+            position: relative;
+            z-index: 2;
+            min-width: 30dvw;
+
+            &__input {
+                display: block;
+                width: 100%;
+                outline: none;
+                position: relative;
+                z-index: 1;
+                font-size: 16px;
+                font-family: inherit;
+                line-height: 1.4;
+                background: $color-text;
+                min-width: 30dvw;
+                border: 1px solid transparent;
+                border-radius: 24px;
+                padding: 12px 48px 12px 32px;
+                box-shadow: 0 4px 16px $color-text-shadow;
+                color: $color-bg;
+                resize: none;
+                overflow: hidden;
+                scrollbar-width: none;
+                min-height: 44px;
+                max-height: 8.4em;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
+
+                &::placeholder {
+                    color: $color-on-surface-muted;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            &__search-button {
+                position: absolute;
+                top: 2px;
+                right: 0;
+                z-index: 3;
+                border: none;
+                padding: 10px;
+                background: transparent;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &__search-input {
+                width: 20px;
+                height: 20px;
+                stroke: $color-white;
+                stroke-width: 2px;
+            }
+        }
+
+        &__help {
+            text-align: center;
+            width: fit-content;
+            font-size: 12px;
+            color: $color-text-muted;
+            cursor: pointer;
+
+            &:hover {
+                color: $color-text;
+            }
+        }
+    }
+
+    &__modal--overlay {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        width: fit-content;
+    }
+
+    &__modal {
+        padding: 30px;
+        background-color: $color-text;
+        transform: translate(50%, -50%);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5%;
+        border-radius: 16px;
+        color: $color-white;
+        max-width: 90%;
+        position: relative;
+
+        &__text {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+
+            &__badge {
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            &__title {
+                font-size: 20px;
+            }
+
+            &__list {
+                list-style-type: none;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                .item {
+                    background-color: $color-accent;
+                    border-radius: 22px 0px 22px 0px;
+                    padding: 20px 25px;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    gap: 10px;
+
+                    &--badge {
+                        position: absolute;
+                        right: 5px;
+                        top: 5px;
+                        color: $color-bg;
+                        background-color: $color-text;
+                        font-size: 14px;
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                    }
+
+                    &--title {
+                        color: $color-text;
+                        font-weight: 700;
+                    }
+
+                    &--description {
+                        font-size: 14px;
+                        color: $color-text-soft;
+                    }
+                }
+            }
+        }
+
+        &__close {
+            position: absolute;
+            right: 1%;
+            top: 3%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color-accent-strong;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color-accent-strong-90;
+            }
+
+            svg path {
+                stroke: $color-text;
+            }
+        }
+    }
+
+    &__search__error {
+        color: $color-error;
+        font-size: 14px;
+    }
+}
