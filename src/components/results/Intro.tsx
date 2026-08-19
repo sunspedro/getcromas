@@ -1,13 +1,12 @@
 interface IIntro {
-    badge: string;
     title: string;
 }
 
-export const Intro = ({badge, title}: IIntro) => {
+export const Intro = ({ title }: IIntro) => {
     return (
-        <>
-            <p className="results__intro__badge">{badge}</p>
+        <div className="results__intro__inner">
+            <p className="results__intro__label">Nome da paleta</p>
             <h2 className="results__intro__title">{title}</h2>
-        </>
+        </div>
     );
 };

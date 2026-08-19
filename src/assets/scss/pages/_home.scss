@@ -19,6 +19,56 @@
         position: fixed;
         top: 0;
         left: 10px;
+        z-index: 10;
+        padding: 10px;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid $color-accent-strong;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        &__mark {
+            display: block;
+            position: relative;
+            width: 120px;
+            height: 40px;
+            background-color: $color-text;
+            mask-image: url("/croma-logo.webp");
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-image: url("/croma-logo.webp");
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            overflow: hidden;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, $color-accent-strong, $color-accent-light);
+                transform: scaleX(0);
+                transform-origin: left center;
+                transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+        }
+
+        &:hover &__mark::after,
+        &:focus-visible &__mark::after {
+            transform: scaleX(1);
+        }
+
+        @media (hover: none) {
+            &:active &__mark::after {
+                transform: scaleX(1);
+                transition-duration: 0.35s;
+            }
+        }
     }
 
     &__intro {
@@ -185,6 +235,22 @@
                     flex-direction: column;
                     position: relative;
                     gap: 10px;
+                    cursor: pointer;
+                    transition:
+                        background-color 0.25s ease,
+                        border-radius 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.25s ease,
+                        box-shadow 0.25s ease;
+
+                    &:hover {
+                        background-color: $color-bg;
+                        border-radius: 0 22px 0 22px;
+                        transform: translateX(6px);
+
+                        .item--badge {
+                            transform: scale(1.08);
+                        }
+                    }
 
                     &--badge {
                         position: absolute;
@@ -199,6 +265,10 @@
                         align-items: center;
                         justify-content: center;
                         border-radius: 50%;
+                        transition:
+                            background-color 0.25s ease,
+                            color 0.25s ease,
+                            transform 0.25s ease;
                     }
 
                     &--title {

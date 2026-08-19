@@ -3,22 +3,33 @@
 .results {
     overflow-x: hidden;
     display: grid;
-    padding: 50px 100px;
+    padding: 120px 100px 50px;
     grid-template-columns: repeat(3, 1fr);
     color: $color-text;
     gap: 20px;
 
     &__intro {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
         grid-column: 1/4;
+        max-width: 720px;
 
-        &__badge {
-            letter-spacing: 2px;
+        &__inner {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        &__label {
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            color: $color-text-muted;
+            font-size: 11px;
+        }
+
+        &__title {
+            font-size: clamp(26px, 3.5vw, 36px);
+            font-weight: 700;
+            line-height: 1.2;
             color: $color-text;
-            font-size: 12px;
         }
     }
 
@@ -28,7 +39,9 @@
         grid-column: 1/4;
 
         &__list {
-            padding: 10px 5px;
+            position: relative;
+            overflow: hidden;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -36,9 +49,40 @@
             border-radius: 10px;
             gap: 6px;
             box-shadow: 0 0 9px 1px #7b7b7b;
+            background-color: color-mix(in srgb, $color-white 30%, transparent);
+
+            &-overlay {
+                position: absolute;
+                inset: 0;
+                transform-origin: right center;
+                pointer-events: none;
+            }
+
+            &-info {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            &-heading {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            &-swatch {
+                flex-shrink: 0;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: var(--color-hash);
+                box-shadow: 0 0 0 1px color-mix(in srgb, $color-text 12%, transparent);
+            }
 
             strong {
-                max-width: 90%;
+                max-width: 100%;
             }
         }
     }
@@ -279,7 +323,7 @@
 
 @media (max-width: 991) {
     .results {
-        padding: 75px 25px;
+        padding: 100px 25px 50px;
 
         &__colors {
             display: grid;

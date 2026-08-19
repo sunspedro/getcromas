@@ -12,6 +12,13 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const handleLogoClick = () => {
+        setView('home');
+        setPalette(null);
+        setQuestion('');
+        setError(null);
+    };
+
     const handleSearch = async (value: string) => {
         setQuestion(value);
         setLoading(true);
@@ -41,14 +48,19 @@ export default function Home() {
 
     return (
         <div className="home">
-            <div className="home__logo">
-                <img src="croma-logo.webp" alt="logo do croma" />
-            </div>
+            <button
+                type="button"
+                className="home__logo"
+                onClick={handleLogoClick}
+                aria-label="Voltar para início"
+            >
+                <span className="home__logo__mark" aria-hidden="true" />
+            </button>
             {view === 'home' && (
                 <HomeView onSubmit={handleSearch} loading={loading} error={error} />
             )}
             {view === 'results' && palette && (
-                <ResultsView pergunta={question} palette={palette} />
+                <ResultsView palette={palette} />
             )}
 
             <FloatModal />

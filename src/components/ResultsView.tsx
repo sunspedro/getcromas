@@ -2,15 +2,14 @@ import { Palette } from "../types/palette";
 import { Intro, Colors, Summary, Contrast, Points, References } from "./results/_index";
 
 interface ResultsViewProps {
-    pergunta: string;
     palette: Palette;
 }
 
-export const ResultsView = ({ pergunta, palette }: ResultsViewProps) => {
+export const ResultsView = ({ palette }: ResultsViewProps) => {
     return (
         <div className="results">
             <div className="results__intro">
-                <Intro badge={pergunta} title={palette.title} />
+                <Intro title={palette.title} />
             </div>
             <div className="results__colors">
                 <Colors list={palette.colors} />
