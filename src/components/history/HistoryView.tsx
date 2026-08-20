@@ -10,7 +10,6 @@ interface HistoryViewProps {
     onPin: (id: string) => void;
     onUnpin: (id: string) => void;
     onDelete: (id: string) => void;
-    onBack: () => void;
 }
 
 export const HistoryView = ({
@@ -20,7 +19,6 @@ export const HistoryView = ({
     onPin,
     onUnpin,
     onDelete,
-    onBack,
 }: HistoryViewProps) => {
     return (
         <section className="history">
@@ -29,9 +27,6 @@ export const HistoryView = ({
                     <p className="history__label">Biblioteca local</p>
                     <h2 className="history__title">Paletas geradas</h2>
                 </div>
-                <button type="button" className="history__back" onClick={onBack}>
-                    Voltar
-                </button>
             </header>
             {notice && <p className="history__notice">{notice}</p>}
             {items.length === 0 ? (

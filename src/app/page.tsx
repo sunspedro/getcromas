@@ -129,7 +129,6 @@ export default function Home() {
                     onPin={pin}
                     onUnpin={unpin}
                     onDelete={handleDelete}
-                    onBack={handleLogoClick}
                 />
             )}
 
