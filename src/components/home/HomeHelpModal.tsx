@@ -23,7 +23,7 @@ export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
                     <ModalIntro />
                     <ModalList />
                 </div>
-                <div className="video">
+                <div className="home__modal__video">
                     <p>vou colocar um video mostrando o funcionamento</p>
                 </div>
                 <motion.div

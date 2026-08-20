@@ -11,10 +11,10 @@ const itemVariants = {
 };
 export const ModalListItem = ({ badge, title, description }: IModalListItem) => {
     return (
-        <motion.li variants={itemVariants} className="item">
-            <p className="item--badge">{badge}</p>
-            <p className="item--title">{title}</p>
-            <p className="item--description">{description}</p>
+        <motion.li variants={itemVariants} className="home__modal-item">
+            <p className="home__modal-item__badge">{badge}</p>
+            <p className="home__modal-item__title">{title}</p>
+            <p className="home__modal-item__description">{description}</p>
         </motion.li>
     );
 };

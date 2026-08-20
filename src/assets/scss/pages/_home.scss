@@ -254,7 +254,7 @@
         -webkit-overflow-scrolling: touch;
         position: relative;
 
-        .video {
+        &__video {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -273,7 +273,7 @@
             padding: 44px 20px 24px;
             max-height: calc(100dvh - 1.5rem);
 
-            .video {
+            .home__modal__video {
                 min-height: 100px;
             }
 
@@ -282,7 +282,7 @@
                     font-size: 18px;
                 }
 
-                &__list .item {
+                &__list .home__modal-item {
                     padding: 16px 20px;
                 }
             }
@@ -309,7 +309,7 @@
                 flex-direction: column;
                 gap: 12px;
 
-                .item {
+                .home__modal-item {
                     background-color: $color-accent;
                     border-radius: 22px 0px 22px 0px;
                     padding: 20px 25px;
@@ -321,20 +321,19 @@
                     transition:
                         background-color 0.25s ease,
                         border-radius 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.25s ease,
-                        box-shadow 0.25s ease;
+                        transform 0.25s ease;
 
                     &:hover {
                         background-color: $color-bg;
                         border-radius: 0 22px 0 22px;
                         transform: translateX(6px);
 
-                        .item--badge {
+                        .home__modal-item__badge {
                             transform: scale(1.08);
                         }
                     }
 
-                    &--badge {
+                    &__badge {
                         position: absolute;
                         right: 5px;
                         top: 5px;
@@ -353,12 +352,12 @@
                             transform 0.25s ease;
                     }
 
-                    &--title {
+                    &__title {
                         color: $color-text;
                         font-weight: 700;
                     }
 
-                    &--description {
+                    &__description {
                         font-size: 14px;
                         color: $color-text-soft;
                     }

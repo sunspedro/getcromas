@@ -1,0 +1,150 @@
+@use "../abstracts" as *;
+
+.palette-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: color-mix(in srgb, $color-white 55%, transparent);
+    border: 1px solid color-mix(in srgb, $color-text 8%, transparent);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px color-mix(in srgb, $color-text 8%, transparent);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px color-mix(in srgb, $color-text 12%, transparent);
+    }
+
+    &__open {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        color: inherit;
+        font: inherit;
+
+        &:focus-visible {
+            outline: 2px solid $color-accent-strong;
+            outline-offset: -4px;
+        }
+    }
+
+    &__swatches {
+        display: flex;
+        height: 28px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    &__swatch {
+        flex: 1;
+        min-width: 0;
+        display: block;
+    }
+
+    &__title {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: $color-text;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__briefing,
+    &__date {
+        font-size: 12px;
+        line-height: 1.4;
+        color: $color-text-muted;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__date {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+        padding: 0 8px 8px;
+    }
+
+    &__action {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 8px;
+        background: none;
+        color: $color-text-muted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover,
+        &:focus-visible {
+            color: $color-text;
+            background: color-mix(in srgb, $color-text 6%, transparent);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-accent-strong;
+            outline-offset: 2px;
+        }
+
+        &--active {
+            color: $color-accent-strong;
+        }
+
+        &--danger:hover,
+        &--danger:focus-visible {
+            color: $color-error;
+        }
+    }
+
+    &__pin-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: $color-text;
+        color: $color-bg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &--full &__swatches {
+        height: 36px;
+    }
+}

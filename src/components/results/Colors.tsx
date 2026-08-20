@@ -1,7 +1,9 @@
-import { motion } from "motion/react";
+"use client";
 
-interface IColorsItems{
-    label: string,
+import { useState } from "react";
+
+interface IColorsItems {
+    label: string;
     name: string;
     hash: string;
 }
@@ -10,31 +12,31 @@ interface IColors {
     list: IColorsItems[];
 }
 
-export const Colors = ({list}: IColors) => {
+export const Colors = ({ list }: IColors) => {
+    const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
+
+    const handleCopy = async (color: IColorsItems) => {
+        try {
+            await navigator.clipboard.writeText(color.hash);
+            setCopiedLabel(color.label);
+            setTimeout(() => setCopiedLabel(null), 1500);
+        } catch {
+            /* clipboard unavailable */
+        }
+    };
+
     return (
         <>
             {list.map((color) => (
-                <motion.div
+                <button
                     key={color.label}
-                    initial="initial"
-                    whileHover="hover"
-                    className="results__colors__list"
+                    type="button"
+                    className={`results__colors__list${copiedLabel === color.label ? " is-copied" : ""}`}
                     style={{ "--color-hash": color.hash } as React.CSSProperties}
+                    onClick={() => handleCopy(color)}
+                    aria-label={`Copiar cor ${color.name} (${color.hash})`}
                 >
-                    <motion.div
-                        className="results__colors__list-overlay"
-                        variants={{
-                            initial: { scaleX: 0 },
-                            hover: { scaleX: 1 },
-                        }}
-                        transition={{
-                            duration: 0.45,
-                            ease: [0.22, 1, 0.36, 1],
-                        }}
-                        style={{
-                            background: `linear-gradient(to left, ${color.hash} 10%, transparent 90%)`,
-                        }}
-                    />
+                    <div className="results__colors__list-overlay" aria-hidden="true" />
 
                     <div className="results__colors__list-info">
                         <div className="results__colors__list-heading">
@@ -46,9 +48,9 @@ export const Colors = ({list}: IColors) => {
                                 {color.label} - {color.name}
                             </strong>
                         </div>
-                        <p>{color.hash}</p>
+                        <p>{copiedLabel === color.label ? "Copiado!" : color.hash}</p>
                     </div>
-                </motion.div>
+                </button>
             ))}
         </>
     );

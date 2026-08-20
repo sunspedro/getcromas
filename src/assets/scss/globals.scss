@@ -1,14 +1,16 @@
+@use "abstracts" as *;
 @use "base/reset";
 @use "base/typography";
 @use "base/scroll-lock";
 @use "pages/home";
 @use "pages/results";
 @use "pages/history";
+@use "components/palette-card";
 @use "components/float-modal";
 @use "components/contrast-modal";
 @use "components/palette-preview-modal";
 
-*{
-    scrollbar-color: #ffc8aa #2b1810 ;
+* {
+    scrollbar-color: $color-accent-light $color-text;
     scrollbar-width: thin;
 }
