@@ -285,10 +285,6 @@
                     font-size: 18px;
                 }
 
-                &__list {
-                    grid-template-columns: 1fr;
-                }
-
                 &__list .home__modal-item {
                     padding: 16px 20px;
                 }
@@ -315,6 +311,11 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
+
+                @media (max-width: 768px) {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(4, auto);
+                }
 
                 .home__modal-item {
                     background-color: $color-accent;
