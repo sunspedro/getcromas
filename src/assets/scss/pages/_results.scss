@@ -109,6 +109,7 @@
             &__title {
                 color: $color-accent;
                 font-size: 24px;
+                font-weight: 700;
             }
 
             &__description {
@@ -131,8 +132,9 @@
                 gap: 12px;
                 color: #fff;
 
-                .title {
+                &__title {
                     font-size: 22px;
+                    font-weight: 700;
                 }
 
                 .description {

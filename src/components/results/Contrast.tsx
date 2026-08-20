@@ -38,7 +38,7 @@ export const Contrast = ({ lista, colors }: IContrast) => {
     return (
         <div className="results__content__contrast">
             <div className="results__content__contrast__text">
-                <p className="title">Validação de Contraste (WCAG)</p>
+                <h3 className="results__content__contrast__text__title">Validação de Contraste (WCAG)</h3>
                 <p className="description">
                     Testamos as principais combinações da paleta contra os critérios mínimos de acessibilidade (WCAG AA), garantindo que texto e elementos de
                     interface permaneçam legíveis em qualquer contexto de uso. Clique para ver mais!
