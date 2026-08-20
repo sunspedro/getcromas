@@ -24,7 +24,13 @@ export const HomeHelpModal = ({ onClose }: { onClose: () => void }) => {
                     <ModalList />
                 </div>
                 <div className="home__modal__video">
-                    <p>vou colocar um video mostrando o funcionamento</p>
+                    <video
+                        src="/video.mp4"
+                        controls
+                        playsInline
+                        preload="metadata"
+                        aria-label="Vídeo demonstrando o funcionamento do GetCromas"
+                    />
                 </div>
                 <motion.div
                     whileHover={{ scale: 1.1 }}

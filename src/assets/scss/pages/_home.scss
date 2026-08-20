@@ -262,9 +262,13 @@
             padding: 16px;
             border-radius: 12px;
             background-color: color-mix(in srgb, $color-white 8%, transparent);
-            text-align: center;
-            font-size: 14px;
-            color: $color-text-muted;
+
+            video {
+                width: 100%;
+                max-height: min(360px, 50dvh);
+                border-radius: 8px;
+                object-fit: contain;
+            }
         }
 
         @media (max-width: 768px) {
