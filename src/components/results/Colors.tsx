@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import { getTextColorForBackground } from "./getTextColorForBackground";
 interface IColorsItems {
     label: string;
     name: string;
@@ -27,31 +27,36 @@ export const Colors = ({ list }: IColors) => {
 
     return (
         <>
-            {list.map((color) => (
-                <button
-                    key={color.label}
-                    type="button"
-                    className={`results__colors__list${copiedLabel === color.label ? " is-copied" : ""}`}
-                    style={{ "--color-hash": color.hash } as React.CSSProperties}
-                    onClick={() => handleCopy(color)}
-                    aria-label={`Copiar cor ${color.name} (${color.hash})`}
-                >
-                    <div className="results__colors__list-overlay" aria-hidden="true" />
+            {list.map((color) => {
+                const textColor = getTextColorForBackground(color.hash);
 
-                    <div className="results__colors__list-info">
-                        <div className="results__colors__list-heading">
-                            <span
-                                className="results__colors__list-swatch"
-                                aria-hidden="true"
-                            />
-                            <strong>
-                                {color.label} - {color.name}
-                            </strong>
+                return (
+                    <button
+                        key={color.label}
+                        type="button"
+                        className={`results__colors__list${copiedLabel === color.label ? " is-copied" : ""}`}
+                        style={{
+                            background: color.hash,
+                            color: textColor,
+                        }}
+                        onClick={() => handleCopy(color)}
+                        aria-label={`Copiar cor ${color.name} (${color.hash})`}
+                    >
+                        <div className="results__colors__list-info">
+                            <div className="results__colors__list-heading">
+                                <span
+                                    className="results__colors__list-swatch"
+                                    aria-hidden="true"
+                                />
+                                <strong>
+                                    {color.label} - {color.name}
+                                </strong>
+                            </div>
+                            <p>{copiedLabel === color.label ? "Copiado!" : color.hash}</p>
                         </div>
-                        <p>{copiedLabel === color.label ? "Copiado!" : color.hash}</p>
-                    </div>
-                </button>
-            ))}
+                    </button>
+                );
+            })}
         </>
     );
 };

@@ -35,55 +35,25 @@
 
     &__colors {
         display: flex;
-        gap: 20px;
         grid-column: 1/4;
+        box-shadow: 0 0 9px 1px $color-text-shadow;
 
         &__list {
-            position: relative;
-            overflow: hidden;
             padding: 10px 12px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             width: 100%;
             border: none;
-            border-radius: 10px;
+            padding-top: 42px;
             gap: 6px;
-            box-shadow: 0 0 9px 1px $color-text-shadow;
-            background-color: color-mix(in srgb, $color-white 30%, transparent);
             cursor: pointer;
             font: inherit;
-            text-align: left;
-            color: inherit;
-            transition: box-shadow 0.25s ease;
-
-            &:hover &-overlay {
-                background: var(--color-hash);
-            }
-
-            &:focus-visible {
-                outline: 2px solid $color-text;
-                outline-offset: 2px;
-            }
-
-            &.is-copied {
-                box-shadow: 0 0 0 2px var(--color-hash);
-            }
-
-            &-overlay {
-                position: absolute;
-                inset: 0;
-                pointer-events: none;
-                background: linear-gradient(to left, var(--color-hash) 10%, transparent 90%);
-                transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-            }
+            justify-content: center;
 
             &-info {
-                position: relative;
-                z-index: 1;
                 display: flex;
                 flex-direction: column;
                 gap: 4px;
+                transition: transform 0.2s ease;
             }
 
             &-heading {
@@ -92,17 +62,9 @@
                 gap: 8px;
             }
 
-            &-swatch {
-                flex-shrink: 0;
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                background-color: var(--color-hash);
-                box-shadow: 0 0 0 1px color-mix(in srgb, $color-text 12%, transparent);
-            }
-
-            strong {
-                max-width: 100%;
+            &:hover &-info,
+            &:focus-visible &-info {
+                transform: translateY(-5px);
             }
         }
     }
@@ -268,6 +230,16 @@
             height: 100%;
             padding: 24px;
             gap: 25px;
+            transition:
+                border-radius 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease,
+                transform 0.25s ease;
+
+            &:hover {
+                border-radius: 0 24px 0 24px;
+                box-shadow: 0 8px 28px color-mix(in srgb, $color-text 14%, transparent);
+                transform: translateY(-2px);
+            }
 
             &__title {
                 text-transform: uppercase;
