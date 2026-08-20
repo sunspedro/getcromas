@@ -3,7 +3,7 @@ import { IntroInfo } from "./IntroInfo";
 export const Intro = () => {
     return (
         <>
-            <h1 className="home__intro__title">Bem vindo ao seu gerador de paletas de cores!</h1>
+            <h1 className="home__intro__title">Gerador de paletas de cores com IA</h1>
             <IntroInfo />
         </>
     );

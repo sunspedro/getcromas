@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { SavedPalette } from "../types/palette";
-import { Intro, SearchInput, HomeHelpModal, HomeLoading, HomeRecentPalettes } from "./home/_index";
+import { Intro, SearchInput, HomeHelpModal, HomeLoading, HomeRecentPalettes, SeoContent } from "./home/_index";
 
 export const HomeView = ({
     onSubmit,
@@ -22,7 +22,7 @@ export const HomeView = ({
 
     return (
         <>
-            <div className="home__stage">
+            <main className="home__stage">
                 <div className="home__intro">
                     <Intro />
                 </div>
@@ -36,7 +36,8 @@ export const HomeView = ({
                         precisa de ajuda?
                     </motion.p>
                 </div>
-            </div>
+            </main>
+            <SeoContent />
             {onOpenPalette && onSeeAll && (
                 <HomeRecentPalettes
                     items={recentItems}

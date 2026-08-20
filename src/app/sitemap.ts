@@ -1,16 +1,5 @@
 import type { MetadataRoute } from "next";
-
-function getBaseUrl(): string {
-    if (process.env.NEXT_PUBLIC_SITE_URL) {
-        return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-    }
-
-    if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
-    }
-
-    return "http://localhost:3000";
-}
+import { getBaseUrl } from "../lib/siteUrl";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = getBaseUrl();
@@ -21,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 1,
+        },
+        {
+            url: `${baseUrl}/about`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.8,
         },
     ];
 }
