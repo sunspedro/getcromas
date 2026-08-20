@@ -243,11 +243,11 @@
         padding: 30px;
         background-color: $color-text;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5%;
+        grid-template-columns: 1fr;
+        gap: 24px;
         border-radius: 16px;
         color: $color-white;
-        width: min(900px, 100%);
+        width: min(960px, 100%);
         max-height: calc(100dvh - 2rem);
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -258,32 +258,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 160px;
-            padding: 16px;
+            width: 100%;
+            padding: 12px;
             border-radius: 12px;
             background-color: color-mix(in srgb, $color-white 8%, transparent);
 
             video {
                 width: 100%;
-                max-height: min(360px, 50dvh);
+                max-height: min(480px, 55dvh);
                 border-radius: 8px;
                 object-fit: contain;
             }
         }
 
         @media (max-width: 768px) {
-            grid-template-columns: 1fr;
             gap: 20px;
             padding: 44px 20px 24px;
             max-height: calc(100dvh - 1.5rem);
 
-            .home__modal__video {
-                min-height: 100px;
+            .home__modal__video video {
+                max-height: min(280px, 40dvh);
             }
 
             &__text {
                 &__title {
                     font-size: 18px;
+                }
+
+                &__list {
+                    grid-template-columns: 1fr;
                 }
 
                 &__list .home__modal-item {
@@ -309,8 +312,8 @@
 
             &__list {
                 list-style-type: none;
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
 
                 .home__modal-item {
