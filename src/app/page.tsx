@@ -88,7 +88,6 @@ export default function Home() {
 
     const homeClass = [
         "home",
-        view === "home" ? "home--landing" : "",
         view === "results" ? "home--results" : "",
         view === "history" ? "home--history" : "",
         view === "home" && items.length > 0 ? "home--with-recent" : "",
