@@ -1,13 +1,15 @@
+export const productionSiteUrl = "https://getcromas.com.br";
+
 export function getBaseUrl(): string {
     if (process.env.NEXT_PUBLIC_SITE_URL) {
         return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
     }
 
-    if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
+    if (process.env.NODE_ENV === "development") {
+        return "http://localhost:3000";
     }
 
-    return "http://localhost:3000";
+    return productionSiteUrl;
 }
 
 export const siteConfig = {

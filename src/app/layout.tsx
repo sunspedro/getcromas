@@ -8,23 +8,33 @@ import { getBaseUrl, siteConfig } from "../lib/siteUrl";
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-heading" });
 const karla = Karla({ subsets: ["latin"], variable: "--font-body" });
 
+const siteUrl = getBaseUrl();
+
 export const metadata: Metadata = {
-    metadataBase: new URL(getBaseUrl()),
+    metadataBase: new URL(siteUrl),
     title: {
         default: siteConfig.title,
         template: `%s | ${siteConfig.name}`,
     },
     description: siteConfig.description,
     alternates: {
-        canonical: "/",
+        canonical: siteUrl,
     },
     openGraph: {
         type: "website",
         locale: siteConfig.locale,
-        url: "/",
+        url: siteUrl,
         siteName: siteConfig.name,
         title: siteConfig.title,
         description: siteConfig.description,
+        images: [
+            {
+                url: `${siteUrl}/opengraph-image`,
+                width: 1200,
+                height: 630,
+                alt: siteConfig.title,
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
