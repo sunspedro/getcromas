@@ -15,6 +15,7 @@ export function getBaseUrl(): string {
 export const siteConfig = {
     name: "Croma",
     title: "Croma — Gerador de Paletas com IA",
+    applicationName: "Croma",
     description:
         "Descreva seu projeto em poucas palavras e receba uma paleta de 5 cores com funções definidas, análise de contraste WCAG, pontos positivos e referências visuais geradas por IA.",
     locale: "pt_BR",
