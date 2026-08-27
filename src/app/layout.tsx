@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../assets/scss/globals.scss";
 import { Fraunces, Karla } from "next/font/google";
 import { JsonLd } from "../components/JsonLd";
 import { getBaseUrl, siteConfig } from "../lib/siteUrl";
+
+const GA_ID = "G-HJ4MXE0PM8";
 
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-heading" });
 const karla = Karla({ subsets: ["latin"], variable: "--font-body" });
@@ -47,6 +50,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     return (
         <html lang="pt-BR">
             <body className={`${fraunces.variable} ${karla.variable}`}>
+                <Script
+                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                    strategy="afterInteractive"
+                />
+                <Script id="gtag-init" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${GA_ID}');
+                    `}
+                </Script>
                 <JsonLd />
                 {children}
                 <SpeedInsights />
